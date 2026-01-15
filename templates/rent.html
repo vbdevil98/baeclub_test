@@ -7,12 +7,14 @@
     {% for item in items %}
     <div class="product-card fade-in">
         <div class="image-wrapper">
-            <img src="{{ item.image }}" alt="{{ item.name }}">
+            <a href="{{ url_for('product_detail', type='rent', id=item.id) }}">
+                <img src="{{ item.image }}" alt="{{ item.name }}">
+            </a>
         </div>
         <div class="product-info">
             <h3>{{ item.name }}</h3>
             <p>₹{{ item.price }} / Day</p>
-            <button class="btn-text">Reserve Now</button>
+            <a href="{{ url_for('product_detail', type='rent', id=item.id) }}" class="btn-text">Reserve Now</a>
         </div>
     </div>
     {% endfor %}
