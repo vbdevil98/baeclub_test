@@ -21,39 +21,27 @@ body {
 
 h1, h2, h3, .logo { font-family: var(--font-serif); font-weight: 400; }
 
-/* --- Navigation (FIXED VISIBILITY) --- */
+/* --- Navigation --- */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 5%;
-    background-color: var(--text-dark); /* Dark background added */
+    background-color: var(--text-dark);
     width: 100%;
-    position: relative; /* Changed from absolute to relative for flow */
+    position: relative;
     z-index: 10;
 }
 
-.logo a { 
-    font-size: 1.8rem; 
-    text-decoration: none; 
-    color: var(--text-light); /* White Text */
-    letter-spacing: -1px; 
-}
+.logo a { font-size: 1.8rem; text-decoration: none; color: var(--text-light); letter-spacing: -1px; }
 
 .nav-links { list-style: none; display: flex; gap: 3rem; }
-.nav-links a { 
-    text-decoration: none; 
-    color: var(--text-light); /* White Text */
-    font-size: 0.9rem; 
-    text-transform: uppercase; 
-    letter-spacing: 1px; 
-    transition: var(--transition); 
-}
+.nav-links a { text-decoration: none; color: var(--text-light); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition); }
 .nav-links a:hover { color: var(--brand-copper); }
 
 /* --- Hero --- */
 .hero {
-    height: 90vh; /* Adjusted height since nav is separate now */
+    height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -65,13 +53,45 @@ h1, h2, h3, .logo { font-family: var(--font-serif); font-weight: 400; }
 .hero-content { position: relative; z-index: 2; color: var(--text-light); }
 .hero h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 1.5rem; }
 
+/* --- How It Works Section (NEW) --- */
+.how-it-works {
+    display: flex;
+    justify-content: space-between;
+    padding: 5rem 10%;
+    background-color: #fff;
+    text-align: center;
+}
+.step { flex: 1; padding: 0 2rem; }
+.step-number { font-family: var(--font-serif); font-size: 3rem; color: var(--brand-copper); display: block; margin-bottom: 1rem; opacity: 0.5; }
+.step h3 { text-transform: uppercase; letter-spacing: 2px; font-size: 1rem; margin-bottom: 1rem; }
+
 /* --- Buttons --- */
 .cta-group { margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; }
-.btn-primary { padding: 1rem 2.5rem; background-color: var(--brand-copper); color: var(--text-light); text-decoration: none; text-transform: uppercase; border: 1px solid var(--brand-copper); transition: var(--transition); }
-.btn-primary:hover { background-color: transparent; border-color: var(--text-light); }
-.btn-secondary { padding: 1rem 2.5rem; background-color: transparent; color: var(--text-light); text-decoration: none; text-transform: uppercase; border: 1px solid var(--text-light); backdrop-filter: blur(5px); transition: var(--transition); }
+.btn-primary { padding: 1rem 2.5rem; background-color: var(--brand-copper); color: var(--text-light); text-decoration: none; text-transform: uppercase; border: 1px solid var(--brand-copper); transition: var(--transition); cursor: pointer; }
+.btn-primary:hover { background-color: transparent; border-color: var(--text-dark); color: var(--text-dark); }
+.btn-secondary { padding: 1rem 2.5rem; background-color: transparent; color: var(--text-light); text-decoration: none; text-transform: uppercase; border: 1px solid var(--text-light); backdrop-filter: blur(5px); transition: var(--transition); cursor: pointer; }
 .btn-secondary:hover { background-color: var(--text-light); color: var(--text-dark); }
-.btn-text { background: none; border: none; border-bottom: 1px solid var(--text-dark); cursor: pointer; font-family: var(--font-sans); text-transform: uppercase; margin-top: 1rem; }
+.btn-text { background: none; border: none; border-bottom: 1px solid var(--text-dark); cursor: pointer; font-family: var(--font-sans); text-transform: uppercase; margin-top: 1rem; text-decoration: none; display: inline-block; color: var(--text-dark); font-size: 0.8rem;}
+
+/* --- Product Detail Page (NEW) --- */
+.detail-container {
+    display: flex;
+    padding: 5% 10%;
+    gap: 4rem;
+    align-items: flex-start;
+}
+.detail-image { flex: 1; }
+.detail-image img { width: 100%; height: auto; object-fit: cover; }
+.detail-info { flex: 1; padding-top: 1rem; }
+.detail-category { text-transform: uppercase; letter-spacing: 2px; color: #888; font-size: 0.8rem; margin-bottom: 1rem; }
+.detail-info h1 { font-size: 3rem; margin-bottom: 0.5rem; line-height: 1.1; }
+.detail-info .price { font-size: 2rem; font-family: var(--font-sans); color: var(--brand-copper); margin-bottom: 2rem; }
+.detail-info .period { font-size: 1rem; color: #666; font-weight: 300; }
+.specs { display: flex; gap: 2rem; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; padding: 1.5rem 0; margin-bottom: 2rem; }
+.spec-item strong { display: block; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 1px; margin-bottom: 0.3rem; }
+.action-buttons { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+.full-width { width: 100%; text-align: center; }
+.detail-info .btn-secondary { border-color: var(--text-dark); color: var(--text-dark); }
 
 /* --- Grid & Cards --- */
 .catalog-header, .philosophy, .lend-header { padding: 4rem 10%; text-align: center; }
@@ -89,8 +109,33 @@ form { width: 100%; max-width: 500px; display: flex; flex-direction: column; gap
 input { padding: 1rem; border: 1px solid #ddd; background: transparent; font-family: var(--font-sans); }
 button[type="submit"] { cursor: pointer; }
 
+/* --- WhatsApp Float --- */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+.whatsapp-float:hover { background-color: #128C7E; transform: scale(1.1); }
+
 /* --- Footer --- */
-footer { padding: 3rem; text-align: center; border-top: 1px solid #ddd; margin-top: 4rem; }
+footer { padding: 4rem 10%; text-align: center; border-top: 1px solid #e5e5e5; margin-top: 4rem; background-color: #fff; }
+.footer-logo { font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 1rem; }
+.footer-tagline { color: #888; font-style: italic; margin-bottom: 2rem; }
+.socials a { margin: 0 1rem; text-decoration: none; color: var(--text-dark); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+.copyright { margin-top: 3rem; font-size: 0.7rem; color: #aaa; }
 
 /* --- Animations --- */
 .fade-in { opacity: 0; animation: fadeIn 1.2s ease forwards; }
