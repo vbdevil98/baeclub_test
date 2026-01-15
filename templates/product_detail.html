@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="detail-container fade-in">
+    <div class="detail-image">
+        <img src="{{ item.image }}" alt="{{ item.name }}">
+    </div>
+    <div class="detail-info">
+        <p class="detail-category">{{ item.category }} Collection</p>
+        <h1>{{ item.name }}</h1>
+        <h2 class="price">
+            ₹{{ item.price }} 
+            <span class="period">{% if item.category == 'Rent' %}/ Day{% endif %}</span>
+        </h2>
+        
+        <div class="specs">
+            <div class="spec-item">
+                <strong>Condition</strong>
+                <p>{{ item.condition }}</p>
+            </div>
+            <div class="spec-item">
+                <strong>Dimensions</strong>
+                <p>{{ item.dimensions }}</p>
+            </div>
+        </div>
+
+        <div class="description">
+            <p>{{ item.desc }}</p>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn-primary full-width">
+                {% if item.category == 'Rent' %}Check Availability{% else %}Purchase Now{% endif %}
+            </button>
+            <button class="btn-secondary full-width">Chat with Stylist</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
