@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
-# --- Mock Data (Replace with Database later) ---
+# --- Mock Data ---
 PREMIUM_RENTALS = [
     {"id": 1, "name": "Chanel Classic Flap", "price": "150", "image": "https://via.placeholder.com/400x500?text=Chanel"},
     {"id": 2, "name": "Hermès Birkin 30", "price": "400", "image": "https://via.placeholder.com/400x500?text=Hermes"},
@@ -22,17 +22,14 @@ def index():
 
 @app.route('/rent')
 def rent():
-    # Premium Rentals Catalog
     return render_template('rent.html', items=PREMIUM_RENTALS)
 
 @app.route('/shop')
 def shop():
-    # E-commerce Section
     return render_template('shop.html', items=SHOP_ITEMS)
 
 @app.route('/lend', methods=['GET', 'POST'])
 def lend():
-    # Peer-to-Peer Lending Form
     if request.method == 'POST':
         # Logic to save user submission would go here
         return redirect(url_for('index'))
@@ -40,6 +37,7 @@ def lend():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,8 +75,7 @@ if __name__ == '__main__':
         <div class="footer-content">
             <p>&copy; 2026 TheBaëclub. Redefining Ownership.</p>
             <div class="socials">
-                <a href="#">Instagram</a>
-                <a href="#">TikTok</a>
+                <a href="#">Instagram</a> | <a href="#">TikTok</a>
             </div>
         </div>
     </footer>
@@ -105,6 +102,7 @@ if __name__ == '__main__':
     <p>We bridge the gap between ownership and experience. <br>Authentication guaranteed.</p>
 </section>
 {% endblock %}
+
 {% extends 'base.html' %}
 
 {% block content %}
@@ -126,6 +124,52 @@ if __name__ == '__main__':
     {% endfor %}
 </section>
 {% endblock %}
+
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="catalog-header">
+    <h2>The Archive Shop</h2>
+</section>
+<section class="product-grid">
+    {% for item in items %}
+    <div class="product-card fade-in">
+        <div class="image-wrapper">
+            <img src="{{ item.image }}" alt="{{ item.name }}">
+        </div>
+        <div class="product-info">
+            <h3>{{ item.name }}</h3>
+            <p>${{ item.price }}</p>
+            <button class="btn-text">Buy Now</button>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+{% endblock %}
+
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="lend-header">
+    <h2>Monetize Your Collection</h2>
+    <p>Join our exclusive peer-to-peer network.</p>
+</section>
+
+<section class="form-container fade-in-up">
+    <form method="POST" action="/lend">
+        <div class="form-group">
+            <label>Item Name</label>
+            <input type="text" name="item_name" placeholder="e.g. Chanel Boy Bag" required>
+        </div>
+        <div class="form-group">
+            <label>Expected Daily Rate ($)</label>
+            <input type="number" name="price" placeholder="150" required>
+        </div>
+        <button type="submit" class="btn-primary">Submit for Review</button>
+    </form>
+</section>
+{% endblock %}
+
 /* --- Variables & Reset --- */
 :root {
     --brand-copper: #BA7C4D; 
@@ -137,11 +181,7 @@ if __name__ == '__main__':
     --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     background-color: var(--brand-cream);
@@ -151,10 +191,7 @@ body {
     overflow-x: hidden;
 }
 
-h1, h2, h3, .logo {
-    font-family: var(--font-serif);
-    font-weight: 400;
-}
+h1, h2, h3, .logo { font-family: var(--font-serif); font-weight: 400; }
 
 /* --- Navigation --- */
 .navbar {
@@ -162,176 +199,57 @@ h1, h2, h3, .logo {
     justify-content: space-between;
     align-items: center;
     padding: 2rem 5%;
-    background: transparent;
     position: absolute;
     width: 100%;
     z-index: 10;
 }
 
-.logo a {
-    font-size: 2rem;
-    text-decoration: none;
-    color: var(--text-dark);
-    letter-spacing: -1px;
-}
+.logo a { font-size: 2rem; text-decoration: none; color: var(--text-dark); letter-spacing: -1px; }
 
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 3rem;
-}
+.nav-links { list-style: none; display: flex; gap: 3rem; }
+.nav-links a { text-decoration: none; color: var(--text-dark); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition); }
+.nav-links a:hover { color: var(--brand-copper); }
 
-.nav-links a {
-    text-decoration: none;
-    color: var(--text-dark);
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: var(--transition);
-}
-
-.nav-links a:hover {
-    color: var(--brand-copper);
-}
-
-/* --- Hero Section --- */
+/* --- Hero --- */
 .hero {
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    /* Placeholder for a luxury fashion background image */
     background: url('https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=2069&auto=format&fit=crop') no-repeat center center/cover;
     position: relative;
 }
-
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.2); /* Slight dark tint for text readability */
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    color: var(--text-light);
-}
-
-.hero h1 {
-    font-size: 4rem;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-}
+.hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.2); }
+.hero-content { position: relative; z-index: 2; color: var(--text-light); }
+.hero h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 1.5rem; }
 
 /* --- Buttons --- */
-.cta-group {
-    margin-top: 2rem;
-    display: flex;
-    gap: 1.5rem;
-    justify-content: center;
-}
+.cta-group { margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; }
+.btn-primary { padding: 1rem 2.5rem; background-color: var(--brand-copper); color: var(--text-light); text-decoration: none; text-transform: uppercase; border: 1px solid var(--brand-copper); transition: var(--transition); }
+.btn-primary:hover { background-color: transparent; border-color: var(--text-light); }
+.btn-secondary { padding: 1rem 2.5rem; background-color: transparent; color: var(--text-light); text-decoration: none; text-transform: uppercase; border: 1px solid var(--text-light); backdrop-filter: blur(5px); transition: var(--transition); }
+.btn-secondary:hover { background-color: var(--text-light); color: var(--text-dark); }
+.btn-text { background: none; border: none; border-bottom: 1px solid var(--text-dark); cursor: pointer; font-family: var(--font-sans); text-transform: uppercase; margin-top: 1rem; }
 
-.btn-primary, .btn-secondary {
-    padding: 1rem 2.5rem;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    transition: var(--transition);
-}
+/* --- Grid & Cards --- */
+.catalog-header, .philosophy, .lend-header { padding: 4rem 10%; text-align: center; }
+.catalog-header h2 { font-size: 3rem; margin-bottom: 1rem; }
+.product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; padding: 0 10% 5% 10%; }
+.image-wrapper img { width: 100%; height: 400px; object-fit: cover; transition: transform 0.6s ease; }
+.product-card:hover img { transform: scale(1.05); }
 
-.btn-primary {
-    background-color: var(--brand-copper);
-    color: var(--text-light);
-    border: 1px solid var(--brand-copper);
-}
-
-.btn-primary:hover {
-    background-color: transparent;
-    border-color: var(--text-light);
-}
-
-.btn-secondary {
-    background-color: transparent;
-    color: var(--text-light);
-    border: 1px solid var(--text-light);
-    backdrop-filter: blur(5px);
-}
-
-.btn-secondary:hover {
-    background-color: var(--text-light);
-    color: var(--text-dark);
-}
-
-/* --- Product Grid (For Shop/Rent) --- */
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 3rem;
-    padding: 5% 10%;
-}
-
-.product-card {
-    cursor: pointer;
-}
-
-.image-wrapper {
-    overflow: hidden;
-    margin-bottom: 1rem;
-}
-
-.image-wrapper img {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-}
-
-.product-card:hover img {
-    transform: scale(1.05);
-}
-
-.product-info h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-}
-
-.product-info p {
-    color: var(--brand-copper);
-    font-weight: bold;
-}
-
-/* --- Animations --- */
-.fade-in {
-    opacity: 0;
-    animation: fadeIn 1.2s ease forwards;
-}
-
-.fade-in-up {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 1s ease forwards 0.5s;
-}
-
-@keyframes fadeIn {
-    to { opacity: 1; }
-}
-
-@keyframes fadeInUp {
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
-}
+/* --- Forms --- */
+.form-container { display: flex; justify-content: center; padding-bottom: 5rem; }
+form { width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 1.5rem; }
+input { padding: 1rem; border: 1px solid #ddd; background: transparent; font-family: var(--font-sans); }
+button[type="submit"] { cursor: pointer; }
 
 /* --- Footer --- */
-footer {
-    padding: 3rem;
-    text-align: center;
-    border-top: 1px solid #ddd;
-    margin-top: 4rem;
-}
+footer { padding: 3rem; text-align: center; border-top: 1px solid #ddd; margin-top: 4rem; }
+
+/* --- Animations --- */
+.fade-in { opacity: 0; animation: fadeIn 1.2s ease forwards; }
+.fade-in-up { opacity: 0; transform: translateY(30px); animation: fadeInUp 1s ease forwards 0.5s; }
+@keyframes fadeIn { to { opacity: 1; } }
+@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
