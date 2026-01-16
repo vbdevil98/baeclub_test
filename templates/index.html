@@ -1,37 +1,61 @@
 {% extends 'base.html' %}
 {% block content %}
+
 <section class="hero">
     <div class="hero-overlay"></div>
-    <div class="hero-content fade-in-up">
-        <h1>Curated Luxury.<br>Accessible to the Few.</h1>
-        <p>Rent the runway’s finest or monetize your own collection.</p>
+    <div class="hero-content fade-up">
+        <p>The 2026 Collection</p>
+        <h1>Owning is<br>Overrated</h1>
         <div class="cta-group">
-            <a href="{{ url_for('rent') }}" class="btn-primary">Explore Collection</a>
-            <a href="{{ url_for('lend') }}" class="btn-secondary">List Your Bag</a>
+            <a href="{{ url_for('rent') }}" class="btn-primary">Enter The Vault</a>
+            <a href="{{ url_for('lend') }}" class="btn-secondary">Consign With Us</a>
         </div>
     </div>
 </section>
 
-<section class="how-it-works">
-    <div class="step">
-        <span class="step-number">01</span>
-        <h3>Select</h3>
-        <p>Choose from our curated vault of authenticated luxury handbags.</p>
+<div class="marquee">
+    <div class="marquee-content">
+        <span>New Arrivals • Paris • Milan • Authentication Guaranteed • Chanel • Hermès • Dior • Secure Shipping • TheBaëclub •</span>
+        <span>New Arrivals • Paris • Milan • Authentication Guaranteed • Chanel • Hermès • Dior • Secure Shipping • TheBaëclub •</span>
     </div>
-    <div class="step">
-        <span class="step-number">02</span>
-        <h3>Experience</h3>
-        <p>Receive your piece via secure, insured delivery for your rental period.</p>
+</div>
+
+<section class="featured">
+    <div class="section-title fade-up">
+        <p>Curated For You</p>
+        <h2>This Week's Icons</h2>
     </div>
-    <div class="step">
-        <span class="step-number">03</span>
-        <h3>Return</h3>
-        <p>Simply pack it in the reusable box and schedule a complimentary pickup.</p>
+    <div class="product-grid">
+        {% for item in featured %}
+        <div class="product-card">
+            <div class="image-wrapper">
+                <a href="{{ url_for('product_detail', type='rent', id=item.id) }}">
+                    <img src="{{ item.image }}" alt="{{ item.name }}">
+                </a>
+            </div>
+            <div class="product-info">
+                <h3>{{ item.name }}</h3>
+                <p class="price">₹{{ item.price }} / Day</p>
+            </div>
+        </div>
+        {% endfor %}
     </div>
 </section>
 
-<section class="philosophy">
-    <h2>The Baë Standard</h2>
-    <p>We bridge the gap between ownership and experience. <br>100% Authentication Guarantee on every piece.</p>
+<section class="journal">
+    <div class="section-title fade-up">
+        <p>Editorial</p>
+        <h2>The Journal</h2>
+    </div>
+    <div class="journal-grid">
+        {% for article in journal %}
+        <div class="journal-item fade-up">
+            <img src="{{ article.img }}" alt="Article">
+            <p class="journal-meta">{{ article.date }} • TRENDS</p>
+            <h3 class="journal-title">{{ article.title }}</h3>
+        </div>
+        {% endfor %}
+    </div>
 </section>
+
 {% endblock %}
