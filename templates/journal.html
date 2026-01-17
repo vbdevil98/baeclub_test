@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="catalog-header">
+    <h2>The Journal</h2>
+    <p>Insights on fashion, heritage, and care.</p>
+</section>
+<section class="journal-grid">
+    {% for post in posts %}
+    <div class="journal-card fade-in">
+        <div class="image-wrapper">
+            <img src="{{ post.image }}" alt="{{ post.title }}">
+        </div>
+        <div class="journal-info">
+            <span class="date">{{ post.date }}</span>
+            <h3>{{ post.title }}</h3>
+            <a href="#" class="btn-text">Read Article</a>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+{% endblock %}
