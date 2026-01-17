@@ -1,21 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
-<section class="lend-split">
-    <div class="lend-info fade-in">
-        <h2>Monetize Your<br>Collection.</h2>
-        <p class="lend-desc">Join our exclusive peer-to-peer network. Your assets should work for you.</p>
-        <ul class="lend-benefits">
-            <li>✓ <strong>White Glove Service:</strong> We handle pickup, cleaning, and delivery.</li>
-            <li>✓ <strong>Insurance:</strong> Full coverage for every rental period.</li>
-            <li>✓ <strong>Vetted Members:</strong> We strictly screen all borrowers.</li>
-        </ul>
+<div class="split-screen">
+    <div class="split-text">
+        <h2>Monetize<br>Your Archive.</h2>
+        <p>Join our exclusive peer-to-peer network. We handle authentication, insurance, and logistics.</p>
+        <br>
+        <p><strong>✓ White Glove Pickup</strong></p>
+        <p><strong>✓ Full Insurance Coverage</strong></p>
     </div>
-    <div class="lend-form-wrapper fade-in-up">
-        <h3>List an Item</h3>
-        <form method="POST" action="/lend">
+    <div class="split-form">
+        <form method="POST">
             <div class="form-group">
                 <label>Item Name</label>
-                <input type="text" name="item_name" placeholder="e.g. Chanel Boy Bag" required>
+                <input type="text" placeholder="e.g. Lady Dior Mini" required>
             </div>
             <div class="form-group">
                 <label>Condition</label>
@@ -26,15 +23,11 @@
                 </select>
             </div>
             <div class="form-group">
-                <label>Expected Daily Rate (₹)</label>
-                <input type="number" name="price" placeholder="12,500" required>
+                <label>Daily Rate (₹)</label>
+                <input type="number" placeholder="1500" required>
             </div>
-            <div class="form-group">
-                <label>Upload Photos</label>
-                <input type="file" multiple class="file-input">
-            </div>
-            <button type="submit" class="btn-primary full-width">Submit for Review</button>
+            <button type="submit" class="btn-submit">Submit for Review</button>
         </form>
     </div>
-</section>
+</div>
 {% endblock %}
