@@ -1,232 +1,97 @@
-/* --- 1. RESET & VARIABLES --- */
-:root {
-    --color-gold: #C6A87C;
-    --color-black: #111111;
-    --color-white: #FFFFFF;
-    --color-cream: #F5F5F0;
-    --color-gray: #888888;
-    --font-heading: 'Playfair Display', serif;
-    --font-body: 'Lato', sans-serif;
-    --spacing-container: 8% 10%;
-}
+/* Add these new sections to your existing CSS */
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-    background-color: var(--color-cream);
-    color: var(--color-black);
-    font-family: var(--font-body);
-    font-weight: 300;
-    line-height: 1.6;
-    overflow-x: hidden; /* Prevents horizontal scrollbar */
-}
-
-h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 400; color: var(--color-black); }
-a { text-decoration: none; color: inherit; transition: 0.3s; }
-img { display: block; width: 100%; }
-
-/* --- 2. NAVIGATION --- */
-.navbar {
+/* --- Flash Messages --- */
+.flash-container {
     position: fixed;
-    top: 0; left: 0; width: 100%;
-    padding: 1.5rem 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(17, 17, 17, 0.95); /* Dark background */
-    backdrop-filter: blur(10px);
+    top: 90px; /* Below Navbar */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 600px;
     z-index: 1000;
 }
-.logo { font-family: var(--font-heading); font-size: 1.8rem; color: var(--color-gold); letter-spacing: -0.5px; }
-.nav-links { list-style: none; display: flex; gap: 2.5rem; }
-.nav-links a { color: var(--color-white); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; }
-.nav-links a:hover { color: var(--color-gold); }
-
-/* --- 3. HERO VIDEO SECTION (Fix for Question 1) --- */
-.hero {
-    position: relative;
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-/* The Video Background */
-.hero-video {
-    position: absolute;
-    top: 50%; left: 50%;
-    min-width: 100%; min-height: 100%;
-    width: auto; height: auto;
-    z-index: 0; /* Behind everything */
-    transform: translate(-50%, -50%); /* Perfectly centered */
-    object-fit: cover;
-}
-
-/* The Dark Overlay */
-.hero-overlay {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.4); /* 40% darkness */
-    z-index: 1;
-}
-
-/* The Text Content */
-.hero-content {
-    position: relative;
-    z-index: 2;
+.flash-message {
+    padding: 1rem 2rem;
+    margin-bottom: 1rem;
     text-align: center;
-    color: var(--color-white);
-    margin-top: 60px; /* Offset for navbar */
+    background-color: var(--text-dark);
+    color: var(--text-light);
+    border: 1px solid var(--brand-copper);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    animation: fadeIn 0.5s ease;
 }
 
-.hero-content h1 {
-    font-size: 4.5rem;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-    color: var(--color-white);
+/* --- Product Detail Page --- */
+.product-detail {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 90vh;
 }
-
-.hero-content p {
-    font-size: 1.2rem;
-    margin-bottom: 2.5rem;
-    letter-spacing: 0.5px;
-    opacity: 0.9;
+.pd-image {
+    flex: 1;
+    min-width: 400px;
+    height: 90vh;
 }
-
-/* --- 4. BUTTONS --- */
-.btn-gold {
-    display: inline-block;
-    padding: 1rem 3rem;
-    background: var(--color-gold);
-    color: var(--color-white);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.8rem;
-    border: 1px solid var(--color-gold);
-}
-.btn-gold:hover { background: transparent; color: var(--color-white); }
-
-.btn-outline {
-    display: inline-block;
-    padding: 1rem 3rem;
-    border: 1px solid var(--color-white);
-    color: var(--color-white);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.8rem;
-    margin-left: 1rem;
-}
-.btn-outline:hover { background: var(--color-white); color: var(--color-black); }
-
-/* --- 5. CATALOG GRID (Fix for Distortion) --- */
-.page-header { padding: 8rem 0 3rem; text-align: center; }
-.page-header h2 { font-size: 3rem; }
-.page-header p { color: var(--color-gray); letter-spacing: 1px; margin-top: 0.5rem; }
-
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Responsive columns */
-    gap: 3rem;
-    padding: var(--spacing-container);
-}
-
-.product-card {
-    background: var(--color-white);
-    transition: transform 0.3s ease;
-}
-.product-card:hover { transform: translateY(-5px); }
-
-.image-frame {
-    width: 100%;
-    aspect-ratio: 3 / 4; /* FORCE PORTRAIT RATIO */
-    overflow: hidden;
-    position: relative;
-}
-
-.image-frame img {
+.pd-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* ESSENTIAL: Prevents distortion */
+    object-fit: cover;
 }
-
-.card-details { padding: 1.5rem; text-align: center; }
-.card-details h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
-.card-details .price { color: var(--color-gold); font-weight: bold; margin-bottom: 1rem; display: block;}
-.btn-link { border-bottom: 1px solid var(--color-black); font-size: 0.8rem; text-transform: uppercase; padding-bottom: 3px; }
-
-/* --- 6. SPLIT LAYOUT (Lend Page) --- */
-.split-screen { display: flex; min-height: 100vh; padding-top: 80px; }
-.split-text {
+.pd-info {
     flex: 1;
-    background: var(--color-black);
-    color: var(--color-white);
+    min-width: 400px;
     padding: 5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background: #fff;
 }
-.split-text h2 { font-size: 3.5rem; color: var(--color-white); line-height: 1.2; margin-bottom: 1.5rem; }
-.split-form {
-    flex: 1;
-    background: var(--color-white);
-    padding: 5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-/* Forms */
-.form-group { margin-bottom: 1.5rem; }
-.form-group label { display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
-input, select {
-    width: 100%;
-    padding: 1rem;
-    border: 1px solid #ddd;
-    background: #fcfcfc;
-    font-family: var(--font-body);
-}
-.btn-submit {
-    width: 100%;
-    padding: 1rem;
-    background: var(--color-black);
-    color: var(--color-white);
-    border: none;
+.pd-category {
     text-transform: uppercase;
     letter-spacing: 2px;
-    cursor: pointer;
+    color: var(--brand-copper);
+    font-size: 0.8rem;
+    font-weight: 600;
 }
-
-/* --- 7. LOGIN (Centered Glass) --- */
-.login-wrapper {
-    height: 100vh;
+.pd-header h1 {
+    font-size: 3.5rem;
+    margin: 0.5rem 0;
+    line-height: 1.1;
+}
+.pd-price {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    font-family: var(--font-serif);
+}
+.pd-specs {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 1.5rem 0;
+    margin-bottom: 2rem;
+}
+.spec-row {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background: url('https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=2073&auto=format&fit=crop') no-repeat center/cover;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
 }
-.login-card {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 3rem 4rem;
-    width: 400px;
+.pd-description {
+    margin-bottom: 3rem;
+    color: #555;
+    font-size: 1rem;
+}
+.authenticity-note {
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--brand-copper);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-/* --- 8. FOOTER --- */
-footer {
-    background: var(--color-white);
-    padding: 4rem 10%;
-    text-align: center;
-    border-top: 1px solid #ddd;
-}
-.social-icons a { margin: 0 10px; font-size: 1.2rem; color: var(--color-black); }
-
-/* --- 9. MOBILE RESPONSIVE --- */
-@media (max-width: 768px) {
-    .hero-content h1 { font-size: 2.5rem; }
-    .split-screen { flex-direction: column; }
-    .split-text, .split-form { padding: 3rem 1.5rem; }
-    .nav-links { display: none; } /* Simplified for MVP */
+/* --- Input Polish --- */
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--brand-copper);
+    background: #fff;
 }
