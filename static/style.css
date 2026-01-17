@@ -28,114 +28,91 @@ h1, h2, h3, .logo { font-family: var(--font-serif); font-weight: 400; }
     align-items: center;
     padding: 1.5rem 5%;
     background-color: var(--text-dark);
-    width: 100%;
     position: relative;
-    z-index: 10;
+    z-index: 100;
 }
-
 .logo a { font-size: 1.8rem; text-decoration: none; color: var(--text-light); letter-spacing: -1px; }
-
-.nav-links { list-style: none; display: flex; gap: 3rem; }
-.nav-links a { text-decoration: none; color: var(--text-light); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition); }
+.nav-links { list-style: none; display: flex; gap: 2.5rem; }
+.nav-links a { text-decoration: none; color: var(--text-light); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition); }
 .nav-links a:hover { color: var(--brand-copper); }
 
-/* --- Hero --- */
+/* --- Motion Picture Hero --- */
 .hero {
     height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: url('https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=2069&auto=format&fit=crop') no-repeat center center/cover;
     position: relative;
+    overflow: hidden;
 }
-.hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); }
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0;
+    transform: translateX(-50%) translateY(-50%);
+    object-fit: cover;
+}
+.hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 1; }
 .hero-content { position: relative; z-index: 2; color: var(--text-light); }
-.hero h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 1.5rem; }
-
-/* --- How It Works Section (NEW) --- */
-.how-it-works {
-    display: flex;
-    justify-content: space-between;
-    padding: 5rem 10%;
-    background-color: #fff;
-    text-align: center;
-}
-.step { flex: 1; padding: 0 2rem; }
-.step-number { font-family: var(--font-serif); font-size: 3rem; color: var(--brand-copper); display: block; margin-bottom: 1rem; opacity: 0.5; }
-.step h3 { text-transform: uppercase; letter-spacing: 2px; font-size: 1rem; margin-bottom: 1rem; }
+.hero h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 1.5rem; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
 
 /* --- Buttons --- */
 .cta-group { margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; }
-.btn-primary { padding: 1rem 2.5rem; background-color: var(--brand-copper); color: var(--text-light); text-decoration: none; text-transform: uppercase; border: 1px solid var(--brand-copper); transition: var(--transition); cursor: pointer; }
+.btn-primary { padding: 1rem 2.5rem; background-color: var(--brand-copper); color: var(--text-light); text-decoration: none; text-transform: uppercase; border: 1px solid var(--brand-copper); cursor: pointer; transition: var(--transition); }
 .btn-primary:hover { background-color: transparent; border-color: var(--text-dark); color: var(--text-dark); }
-.btn-secondary { padding: 1rem 2.5rem; background-color: transparent; color: var(--text-light); text-decoration: none; text-transform: uppercase; border: 1px solid var(--text-light); backdrop-filter: blur(5px); transition: var(--transition); cursor: pointer; }
+.btn-secondary { padding: 1rem 2.5rem; background-color: transparent; color: var(--text-light); text-decoration: none; text-transform: uppercase; border: 1px solid var(--text-light); backdrop-filter: blur(5px); transition: var(--transition); }
 .btn-secondary:hover { background-color: var(--text-light); color: var(--text-dark); }
 .btn-text { background: none; border: none; border-bottom: 1px solid var(--text-dark); cursor: pointer; font-family: var(--font-sans); text-transform: uppercase; margin-top: 1rem; text-decoration: none; display: inline-block; color: var(--text-dark); font-size: 0.8rem;}
+.full-width { width: 100%; text-align: center; display: block; }
 
-/* --- Product Detail Page (NEW) --- */
-.detail-container {
-    display: flex;
-    padding: 5% 10%;
-    gap: 4rem;
-    align-items: flex-start;
-}
-.detail-image { flex: 1; }
-.detail-image img { width: 100%; height: auto; object-fit: cover; }
-.detail-info { flex: 1; padding-top: 1rem; }
-.detail-category { text-transform: uppercase; letter-spacing: 2px; color: #888; font-size: 0.8rem; margin-bottom: 1rem; }
-.detail-info h1 { font-size: 3rem; margin-bottom: 0.5rem; line-height: 1.1; }
-.detail-info .price { font-size: 2rem; font-family: var(--font-sans); color: var(--brand-copper); margin-bottom: 2rem; }
-.detail-info .period { font-size: 1rem; color: #666; font-weight: 300; }
-.specs { display: flex; gap: 2rem; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; padding: 1.5rem 0; margin-bottom: 2rem; }
-.spec-item strong { display: block; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 1px; margin-bottom: 0.3rem; }
-.action-buttons { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
-.full-width { width: 100%; text-align: center; }
-.detail-info .btn-secondary { border-color: var(--text-dark); color: var(--text-dark); }
+/* --- Forms & Login --- */
+.login-section, .availability-section { height: 80vh; display: flex; align-items: center; justify-content: center; background: #fff; }
+.login-container, .availability-container { width: 100%; max-width: 400px; text-align: center; }
+.form-group { margin-bottom: 1.5rem; text-align: left; }
+.form-group label { display: block; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: 1px; }
+input, select { width: 100%; padding: 1rem; border: 1px solid #ddd; background: #fafafa; font-family: var(--font-sans); }
+.signup-link { margin-top: 1rem; font-size: 0.9rem; }
+.signup-link a { color: var(--brand-copper); text-decoration: none; }
 
-/* --- Grid & Cards --- */
-.catalog-header, .philosophy, .lend-header { padding: 4rem 10%; text-align: center; }
-.catalog-header h2 { font-size: 3rem; margin-bottom: 1rem; }
+/* --- Lend Page Split Layout --- */
+.lend-split { display: flex; min-height: 90vh; }
+.lend-info { flex: 1; background-color: var(--text-dark); color: var(--text-light); padding: 5rem; display: flex; flex-direction: column; justify-content: center; }
+.lend-info h2 { font-size: 4rem; line-height: 1; margin-bottom: 2rem; }
+.lend-benefits li { list-style: none; margin-bottom: 1rem; opacity: 0.9; }
+.lend-form-wrapper { flex: 1; padding: 5rem; display: flex; flex-direction: column; justify-content: center; background: #fff; }
+
+/* --- Journal --- */
+.journal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; padding: 5% 10%; }
+.journal-card img { width: 100%; height: 300px; object-fit: cover; filter: grayscale(20%); transition: var(--transition); }
+.journal-card:hover img { filter: grayscale(0%); }
+.journal-info { padding: 1.5rem 0; }
+.journal-info .date { font-size: 0.8rem; color: #888; text-transform: uppercase; }
+.journal-info h3 { font-size: 1.5rem; margin: 0.5rem 0 1rem; }
+
+/* --- WhatsApp Float --- */
+.whatsapp-float { position: fixed; bottom: 40px; right: 40px; background-color: #25d366; color: #FFF; width: 60px; height: 60px; border-radius: 50%; text-align: center; font-size: 30px; display: flex; align-items: center; justify-content: center; z-index: 100; box-shadow: 2px 2px 5px rgba(0,0,0,0.3); }
+
+/* --- Grid & General --- */
+.catalog-header { padding: 4rem 10%; text-align: center; }
+.catalog-header h2 { font-size: 3rem; margin-bottom: 0.5rem; }
 .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; padding: 0 10% 5% 10%; }
-.image-wrapper { height: 400px; overflow: hidden; margin-bottom: 1rem; }
+.image-wrapper { height: 400px; overflow: hidden; margin-bottom: 1rem; position: relative; }
 .image-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
 .product-card:hover img { transform: scale(1.05); }
 .product-info h3 { font-size: 1.2rem; }
-.product-info p { color: var(--brand-copper); font-weight: bold; margin: 0.5rem 0; }
-
-/* --- Forms --- */
-.form-container { display: flex; justify-content: center; padding-bottom: 5rem; }
-form { width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 1.5rem; }
-input { padding: 1rem; border: 1px solid #ddd; background: transparent; font-family: var(--font-sans); }
-button[type="submit"] { cursor: pointer; }
-
-/* --- WhatsApp Float --- */
-.whatsapp-float {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 40px;
-    right: 40px;
-    background-color: #25d366;
-    color: #FFF;
-    border-radius: 50px;
-    text-align: center;
-    font-size: 30px;
-    box-shadow: 2px 2px 3px #999;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-.whatsapp-float:hover { background-color: #128C7E; transform: scale(1.1); }
+.how-it-works { display: flex; padding: 5rem 10%; text-align: center; background: #fff; }
+.step { flex: 1; padding: 0 2rem; }
+.step-number { font-size: 3rem; color: var(--brand-copper); opacity: 0.5; font-family: var(--font-serif); }
 
 /* --- Footer --- */
 footer { padding: 4rem 10%; text-align: center; border-top: 1px solid #e5e5e5; margin-top: 4rem; background-color: #fff; }
-.footer-logo { font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 1rem; }
-.footer-tagline { color: #888; font-style: italic; margin-bottom: 2rem; }
-.socials a { margin: 0 1rem; text-decoration: none; color: var(--text-dark); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
-.copyright { margin-top: 3rem; font-size: 0.7rem; color: #aaa; }
+.socials a { margin: 0 1rem; text-decoration: none; color: var(--text-dark); text-transform: uppercase; font-size: 0.8rem; }
 
 /* --- Animations --- */
 .fade-in { opacity: 0; animation: fadeIn 1.2s ease forwards; }
