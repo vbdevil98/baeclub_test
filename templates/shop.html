@@ -1,24 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
-<div style="padding-top: 150px;">
-    <div class="section-title fade-up">
-        <p>Archive Sales</p>
-        <h2>Invest In Legacy</h2>
-    </div>
-    <section class="product-grid">
-        {% for item in items %}
-        <div class="product-card">
-            <div class="image-wrapper">
-                <a href="{{ url_for('product_detail', type='shop', id=item.id) }}">
-                    <img src="{{ item.image }}" alt="{{ item.name }}">
-                </a>
-            </div>
-            <div class="product-info">
-                <h3>{{ item.name }}</h3>
-                <p class="price">₹{{ item.price }}</p>
-            </div>
+<section class="catalog-header">
+    <h2>The Archive Shop</h2>
+</section>
+<section class="product-grid">
+    {% for item in items %}
+    <div class="product-card fade-in">
+        <div class="image-wrapper">
+            <a href="{{ url_for('product_detail', type='shop', id=item.id) }}">
+                <img src="{{ item.image }}" alt="{{ item.name }}">
+            </a>
         </div>
-        {% endfor %}
-    </section>
-</div>
+        <div class="product-info">
+            <h3>{{ item.name }}</h3>
+            <p>₹{{ item.price }}</p>
+            <a href="{{ url_for('product_detail', type='shop', id=item.id) }}" class="btn-text">View Details</a>
+        </div>
+    </div>
+    {% endfor %}
+</section>
 {% endblock %}
