@@ -1,23 +1,40 @@
 {% extends 'base.html' %}
 {% block content %}
-<div style="padding-top: 150px;">
-    <div class="section-title fade-up">
-        <p>Consignment</p>
-        <h2>Monetize Your Vault</h2>
+<section class="lend-split">
+    <div class="lend-info fade-in">
+        <h2>Monetize Your<br>Collection.</h2>
+        <p class="lend-desc">Join our exclusive peer-to-peer network. Your assets should work for you.</p>
+        <ul class="lend-benefits">
+            <li>✓ <strong>White Glove Service:</strong> We handle pickup, cleaning, and delivery.</li>
+            <li>✓ <strong>Insurance:</strong> Full coverage for every rental period.</li>
+            <li>✓ <strong>Vetted Members:</strong> We strictly screen all borrowers.</li>
+        </ul>
     </div>
-    <section class="form-container fade-up">
+    <div class="lend-form-wrapper fade-in-up">
+        <h3>List an Item</h3>
         <form method="POST" action="/lend">
             <div class="form-group">
-                <input type="text" name="item_name" placeholder="Item Name (e.g. Chanel Boy)" required>
+                <label>Item Name</label>
+                <input type="text" name="item_name" placeholder="e.g. Chanel Boy Bag" required>
             </div>
             <div class="form-group">
-                <input type="number" name="price" placeholder="Expected Price (₹)" required>
+                <label>Condition</label>
+                <select>
+                    <option>Brand New</option>
+                    <option>Excellent</option>
+                    <option>Vintage</option>
+                </select>
             </div>
             <div class="form-group">
-                <input type="email" placeholder="Your Email Address" required>
+                <label>Expected Daily Rate (₹)</label>
+                <input type="number" name="price" placeholder="12,500" required>
             </div>
-            <button type="submit" class="btn-submit">Submit Application</button>
+            <div class="form-group">
+                <label>Upload Photos</label>
+                <input type="file" multiple class="file-input">
+            </div>
+            <button type="submit" class="btn-primary full-width">Submit for Review</button>
         </form>
-    </section>
-</div>
+    </div>
+</section>
 {% endblock %}
