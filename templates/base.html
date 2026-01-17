@@ -3,35 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TheBaëclub | Luxury Fashion House</title>
+    <title>TheBaëclub | Luxury Fashion</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <nav class="navbar fade-in">
+    
+    <nav class="navbar">
         <div class="logo"><a href="/">TheBaëclub</a></div>
         <ul class="nav-links">
             <li><a href="{{ url_for('rent') }}">Rent</a></li>
             <li><a href="{{ url_for('shop') }}">Statement Bags</a></li>
             <li><a href="{{ url_for('lend') }}">Lend</a></li>
             <li><a href="{{ url_for('journal') }}">Journal</a></li>
-            <li><a href="{{ url_for('login') }}" class="btn-outline">Login</a></li>
+            <li><a href="{{ url_for('login') }}">Login</a></li>
         </ul>
     </nav>
-    <main>{% block content %}{% endblock %}</main>
-    
-    <a href="#" class="whatsapp-float"><i class="fa-brands fa-whatsapp"></i></a>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-logo">TheBaëclub</div>
-            <p class="footer-tagline">Redefining Ownership. Curating Legacy.</p>
-            <div class="socials">
-                <a href="#">Instagram</a> | <a href="#">TikTok</a>
-            </div>
-            <p class="copyright">&copy; 2026 TheBaëclub India Pvt Ltd.</p>
+        <p>&copy; 2026 TheBaëclub. Redefining Ownership.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
         </div>
     </footer>
+
 </body>
 </html>
