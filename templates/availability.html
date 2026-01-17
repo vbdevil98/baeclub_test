@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="availability-section fade-in-up">
+    <div class="availability-container">
+        <h2>Check Availability</h2>
+        <p>For {{ item.name }}</p>
+        <form method="POST">
+            <div class="form-group">
+                <label>Start Date</label>
+                <input type="date" required>
+            </div>
+            <div class="form-group">
+                <label>End Date</label>
+                <input type="date" required>
+            </div>
+            <div class="price-summary">
+                <p>Estimated Total: <span id="total">Calculating...</span></p>
+            </div>
+            <button type="submit" class="btn-primary full-width">Confirm Dates</button>
+        </form>
+    </div>
+</section>
+{% endblock %}
