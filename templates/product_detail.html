@@ -1,30 +1,39 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<div class="detail-container fade-up">
-    <div class="detail-image image-wrapper">
+<div class="detail-container fade-in">
+    <div class="detail-image">
         <img src="{{ item.image }}" alt="{{ item.name }}">
     </div>
     <div class="detail-info">
-        <p style="letter-spacing: 2px; color: #999;">{{ item.category }} Collection</p>
+        <p class="detail-category">{{ item.category }} Collection</p>
         <h1>{{ item.name }}</h1>
-        <p class="price" style="font-size: 2rem; margin-bottom: 2rem;">₹{{ item.price }}</p>
+        <h2 class="price">
+            ₹{{ item.price }} 
+            <span class="period">{% if item.category == 'Rent' %}/ Day{% endif %}</span>
+        </h2>
         
-        <p style="font-family: 'Cormorant Garamond'; font-size: 1.4rem; line-height: 1.6;">{{ item.desc }}</p>
-
-        <div class="spec-grid">
-            <div>
-                <strong style="display:block; font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 5px;">CONDITION</strong>
-                {{ item.condition }}
+        <div class="specs">
+            <div class="spec-item">
+                <strong>Condition</strong>
+                <p>{{ item.condition }}</p>
             </div>
-            <div>
-                <strong style="display:block; font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 5px;">DIMENSIONS</strong>
-                {{ item.dimensions }}
+            <div class="spec-item">
+                <strong>Dimensions</strong>
+                <p>{{ item.dimensions }}</p>
             </div>
         </div>
 
-        <button class="btn-submit">
-            {% if item.category == 'Rent' %}Check Availability{% else %}Acquire Now{% endif %}
-        </button>
+        <div class="description">
+            <p>{{ item.desc }}</p>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn-primary full-width">
+                {% if item.category == 'Rent' %}Check Availability{% else %}Purchase Now{% endif %}
+            </button>
+            <button class="btn-secondary full-width">Chat with Stylist</button>
+        </div>
     </div>
 </div>
 {% endblock %}
