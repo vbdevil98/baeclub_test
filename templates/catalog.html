@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="page-header">
+    <h2>{{ title }}</h2>
+    <p>{{ subtitle }}</p>
+</section>
+
+<section class="grid-container">
+    {% for item in items %}
+    <div class="product-card">
+        <div class="image-frame">
+            <img src="{{ item.image }}" alt="{{ item.name }}">
+        </div>
+        <div class="card-details">
+            <h3>{{ item.name }}</h3>
+            <span class="price">₹{{ item.price }}</span>
+            <a href="{{ url_for('check_availability', id=item.id) }}" class="btn-link">
+                {% if type == 'rent' %}Check Dates{% else %}View Details{% endif %}
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+{% endblock %}
