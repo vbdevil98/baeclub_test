@@ -1,39 +1,39 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<div class="detail-container fade-in">
-    <div class="detail-image">
+<section class="product-detail fade-in">
+    <div class="pd-image">
         <img src="{{ item.image }}" alt="{{ item.name }}">
     </div>
-    <div class="detail-info">
-        <p class="detail-category">{{ item.category }} Collection</p>
-        <h1>{{ item.name }}</h1>
-        <h2 class="price">
-            ₹{{ item.price }} 
-            <span class="period">{% if item.category == 'Rent' %}/ Day{% endif %}</span>
-        </h2>
+    <div class="pd-info">
+        <div class="pd-header">
+            <span class="pd-category">{{ item.category }} Collection</span>
+            <h1>{{ item.name }}</h1>
+            <p class="pd-price">₹{{ "{:,}".format(item.price) }} <span class="pd-period">{% if type == 'rent' %}/ day{% endif %}</span></p>
+        </div>
         
-        <div class="specs">
-            <div class="spec-item">
-                <strong>Condition</strong>
-                <p>{{ item.condition }}</p>
+        <div class="pd-specs">
+            <div class="spec-row">
+                <span>Condition</span>
+                <strong>{{ item.condition }}</strong>
             </div>
-            <div class="spec-item">
-                <strong>Dimensions</strong>
-                <p>{{ item.dimensions }}</p>
+            <div class="spec-row">
+                <span>Dimensions</span>
+                <strong>{{ item.dimensions }}</strong>
             </div>
         </div>
 
-        <div class="description">
+        <div class="pd-description">
             <p>{{ item.desc }}</p>
         </div>
 
-        <div class="action-buttons">
-            <button class="btn-primary full-width">
-                {% if item.category == 'Rent' %}Check Availability{% else %}Purchase Now{% endif %}
-            </button>
-            <button class="btn-secondary full-width">Chat with Stylist</button>
+        <div class="pd-actions">
+            {% if type == 'rent' or type == 'Rent' %}
+                <a href="{{ url_for('availability', id=item.id) }}" class="btn-primary full-width">Check Availability</a>
+            {% else %}
+                <button class="btn-primary full-width">Add to Cart</button>
+            {% endif %}
+            <p class="authenticity-note"><i class="fa-solid fa-check-circle"></i> Authenticated by Experts</p>
         </div>
     </div>
-</div>
+</section>
 {% endblock %}
