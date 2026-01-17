@@ -1,23 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
-<section class="availability-section fade-in-up">
-    <div class="availability-container">
-        <h2>Check Availability</h2>
-        <p>For {{ item.name }}</p>
-        <form method="POST">
+<div class="split-screen">
+    <div class="split-text" style="background: url('{{ item.image }}') center/cover;">
+        </div>
+    
+    <div class="split-form">
+        <h2>Reserve</h2>
+        <h3>{{ item.name }}</h3>
+        <p style="color: var(--color-gold); font-size: 1.5rem; margin-bottom: 2rem;">₹{{ item.price }} / Day</p>
+        
+        <form>
             <div class="form-group">
                 <label>Start Date</label>
-                <input type="date" required>
+                <input type="date">
             </div>
             <div class="form-group">
                 <label>End Date</label>
-                <input type="date" required>
+                <input type="date">
             </div>
-            <div class="price-summary">
-                <p>Estimated Total: <span id="total">Calculating...</span></p>
-            </div>
-            <button type="submit" class="btn-primary full-width">Confirm Dates</button>
+            <button class="btn-submit">Confirm Dates</button>
         </form>
     </div>
-</section>
+</div>
 {% endblock %}
