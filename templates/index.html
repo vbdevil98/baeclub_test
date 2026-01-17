@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 <section class="hero">
+    <video autoplay muted loop playsinline class="hero-video">
+        <source src="https://videos.pexels.com/video-files/3756360/3756360-uhd_2560_1440_25fps.mp4" type="video/mp4">
+    </video>
+    
     <div class="hero-overlay"></div>
     <div class="hero-content fade-in-up">
-        <h1>Curated Luxury.<br>Accessible to the Few.</h1>
+        <h1>Curated Luxury.<br>In Motion.</h1>
         <p>Rent the runway’s finest or monetize your own collection.</p>
         <div class="cta-group">
             <a href="{{ url_for('rent') }}" class="btn-primary">Explore Collection</a>
@@ -32,6 +36,6 @@
 
 <section class="philosophy">
     <h2>The Baë Standard</h2>
-    <p>We bridge the gap between ownership and experience. <br>100% Authentication Guarantee on every piece.</p>
+    <p>We bridge the gap between ownership and experience. <br>100% Authentication Guarantee.</p>
 </section>
 {% endblock %}
