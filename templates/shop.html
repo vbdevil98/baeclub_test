@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 <section class="catalog-header">
-    <h2>The Archive Shop</h2>
+    <h2>Statement Bags</h2>
+    <p>Exclusive ownership. Curated for the bold.</p>
 </section>
 <section class="product-grid">
     {% for item in items %}
@@ -12,6 +13,7 @@
             </a>
         </div>
         <div class="product-info">
+            <span class="category-tag">{{ item.category }}</span>
             <h3>{{ item.name }}</h3>
             <p>₹{{ item.price }}</p>
             <a href="{{ url_for('product_detail', type='shop', id=item.id) }}" class="btn-text">View Details</a>
